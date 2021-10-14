@@ -10,8 +10,12 @@
 </ContentPage.BindingContext>
 
 <StackLayout Padding="20,40,20,20">
-    <Entry Text="{Binding City, Mode=TwoWay}"
-           Placeholder="Search City"/>
+    <StackLayout Orientation="Horizontal">
+        <Entry Text="{Binding City, Mode=TwoWay}"
+           Placeholder="Search City" HorizontalOptions="FillAndExpand"/>
+        <Button Text="Save City" BorderColor="Black" Clicked="SaveCity_Clicked"/>
+    </StackLayout>
+    
     <ActivityIndicator IsRunning="{Binding IsBusy,Mode=TwoWay}"/>
     <StackLayout Orientation="Horizontal">
         <StackLayout HorizontalOptions="StartAndExpand">

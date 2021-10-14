@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using AvivaWeather.Models;
@@ -15,6 +16,15 @@ namespace AvivaWeather.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        internal void Init()
+        {
+            City = AppSettings.City ?? "";
+        }
+
+        internal void SaveCity()
+        {
+            AppSettings.City = _city;
+        }
 
         WeatherServices _weatherServices = new WeatherServices();
 
