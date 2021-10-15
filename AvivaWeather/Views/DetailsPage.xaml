@@ -1,21 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AvivaWeather.Views.MainPage"
+             x:Class="AvivaWeather.Views.DetailsPage"
              xmlns:weatherVm="clr-namespace:AvivaWeather.ViewModels"
 >
 
-<!--<ContentPage.BindingContext>
-    <weatherVm:WeatherViewModel/>
-</ContentPage.BindingContext>-->
+<ContentPage.BindingContext>
+    <weatherVm:DetailWeatherViewModel/>
+</ContentPage.BindingContext>
 
 <StackLayout Padding="20,40,20,20">
-    <StackLayout Orientation="Horizontal">
-        <Entry Text="{Binding City, Mode=TwoWay}"
-           Placeholder="Search City" HorizontalOptions="FillAndExpand"/>
-        <Button Text="Save City" BorderColor="Black" Clicked="SaveCity_Clicked"/>
-    </StackLayout>
-    
+
     <ActivityIndicator IsRunning="{Binding IsBusy,Mode=TwoWay}"/>
     <StackLayout Orientation="Horizontal">
         <StackLayout HorizontalOptions="StartAndExpand">
@@ -46,12 +41,30 @@
 
     <StackLayout Orientation="Horizontal">
         <StackLayout HorizontalOptions="StartAndExpand">
+            <Label Text="Humidity:"/>
+        </StackLayout>
+    <StackLayout HorizontalOptions="EndAndExpand">
+            <Label Text="{Binding WeatherMainModel.main.humidity}"/>
+        </StackLayout>
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal">
+        <StackLayout HorizontalOptions="StartAndExpand">
             <Label Text="Weather Main Status:"/>
         </StackLayout>
     <StackLayout HorizontalOptions="EndAndExpand">
             <Label Text="{Binding WeatherMainModel.weather[0].main}"/>
         </StackLayout>
     </StackLayout>
+
+    <StackLayout Orientation="Horizontal">
+        <StackLayout HorizontalOptions="StartAndExpand">
+            <Label Text="Weather Status:"/>
+        </StackLayout>
+        <StackLayout HorizontalOptions="EndAndExpand">
+            <Label Text="{Binding WeatherMainModel.weather[0].description}"/>           
+        </StackLayout>
+     </StackLayout>
 
     <StackLayout Orientation="Horizontal">
         <StackLayout HorizontalOptions="StartAndExpand">
@@ -63,9 +76,14 @@
                    HeightRequest="30"/>
             </StackLayout>
     </StackLayout>
-
-    <StackLayout>
-        <Button Text="Weather Details" Clicked="WeatherDetail_Clicked" />
+        
+    <StackLayout Orientation="Horizontal">
+        <StackLayout HorizontalOptions="StartAndExpand">
+            <Label Text="Wind Speed:"/>
+        </StackLayout>
+        <StackLayout HorizontalOptions="EndAndExpand">
+            <Label Text="{Binding WeatherMainModel.wind.speed}"/>
+        </StackLayout>
     </StackLayout>
 </StackLayout>
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace AvivaWeather.Models
@@ -31,8 +32,19 @@ namespace AvivaWeather.Models
 
     public class WeatherTempDetails
     {
-        [JsonProperty("temp")]
-        public string temp { get; set; }
+        private string _temp;
+        public string temp
+        {
+            get
+            {
+                double finalTemp = (Convert.ToDouble(_temp) - 273.15);
+                return finalTemp.ToString("N1") + "°C";
+            }
+            set
+            {
+                _temp = value;
+            }
+        }
         [JsonProperty("humidity")]
         public string humidity { get; set; }
     }

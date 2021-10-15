@@ -4,7 +4,7 @@ using AvivaWeather.WeatherRestClient;
 
 namespace AvivaWeather.ServicesHandler
 {
-    public class WeatherServices
+    public class WeatherServices : IWeatherServices
     {
         OpenWeatherMap<WeatherMainModel> _openWeatherRest = new OpenWeatherMap<WeatherMainModel>();
         public async Task<WeatherMainModel> GetWeatherDetails(string city)

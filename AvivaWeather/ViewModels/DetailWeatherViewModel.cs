@@ -7,15 +7,8 @@ using AvivaWeather.ServicesHandler;
 
 namespace AvivaWeather.ViewModels
 {
-    public class WeatherViewModel : INotifyPropertyChanged
+    public class DetailWeatherViewModel : INotifyPropertyChanged
     {
-        IWeatherServices _weatherServices;
-
-        public WeatherViewModel(IWeatherServices weatherServices)
-        {
-            _weatherServices = weatherServices;
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -28,10 +21,12 @@ namespace AvivaWeather.ViewModels
             City = AppSettings.City ?? "";
         }
 
-        public void SaveCity()
+        internal void SaveCity()
         {
             AppSettings.City = _city;
         }
+
+        WeatherServices _weatherServices = new WeatherServices();
 
         private WeatherMainModel _weatherMainModel;
         public WeatherMainModel WeatherMainModel
@@ -86,10 +81,6 @@ namespace AvivaWeather.ViewModels
             {
                 IsBusy = true;
                 WeatherMainModel = await _weatherServices.GetWeatherDetails(_city);
-            }
-            catch (Exception ex)
-            {
-
             }
             finally
             {
